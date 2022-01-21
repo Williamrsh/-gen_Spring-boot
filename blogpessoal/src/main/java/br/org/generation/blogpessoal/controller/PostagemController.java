@@ -72,9 +72,6 @@ public class PostagemController {
 					postagemRepository.deleteById(id);
 					return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 				})
-				.orElse(ResponseEntity.notFound().build());
-		
-	}
-	
-	
+				.orElse(ResponseEntity.notFound().build());	
+	}	
 }

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "tb_produtos")
 public class Produto {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -40,6 +42,7 @@ public class Produto {
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	@NotBlank(message = "O atributo preco é Obrigatório!")
+	@Positive(message = "O preço deve ser maior do que zero!")
 	private BigDecimal preco;
 	
 	private String foto;

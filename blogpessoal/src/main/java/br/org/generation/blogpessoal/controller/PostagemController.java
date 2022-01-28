@@ -32,7 +32,7 @@ public class PostagemController {
 	public ResponseEntity <List<Postagem>> getAll(){
 		return ResponseEntity.ok(postagemRepository.findAll());
 		
-		//select * from tb_postagens;D
+		//select * from tb_postagens;
 	}
 	@GetMapping("/{id}")
 	public ResponseEntity <Postagem> getById(@PathVariable Long id){

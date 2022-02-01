@@ -11,11 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "tb_produtos")
@@ -37,23 +39,28 @@ public class Produto {
 	@Size(max = 1000)
 	private String descricao;
 	
-	@NotBlank(message = "O atributo quantidade é Obrigatório!")
+	@NotNull(message = "O atributo quantidade é Obrigatório!")
 	private int quantidade;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING)
-	@NotBlank(message = "O atributo preco é Obrigatório!")
+	@NotNull(message = "O atributo preco é Obrigatório!")
 	@Positive(message = "O preço deve ser maior do que zero!")
 	private BigDecimal preco;
 	
 	private String foto;
 	
 	@Column(name = "data_lancamento")
-	@JsonFormat(pattern = "yyyy-mm-dd")
-	private LocalDate data_lancamento;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate datalancamento;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("produto")
 	private Categoria categoria;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Usuario usuario;
+	
 	
 	public Categoria getCategoria() {
 		return categoria;
@@ -120,11 +127,11 @@ public class Produto {
 	}
 
 	public LocalDate getData_lancamento() {
-		return data_lancamento;
+		return datalancamento;
 	}
 
-	public void setData_lancamento(LocalDate data_lancamento) {
-		this.data_lancamento = data_lancamento;
+	public void setData_lancamento(LocalDate datalancamento) {
+		this.datalancamento = datalancamento;
 	}
 
 }
